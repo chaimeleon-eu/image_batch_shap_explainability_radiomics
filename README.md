@@ -9,10 +9,6 @@ This tool allows you to:
 - Compute SHAP values for your handcrafted radiomics machine learning model.
 - Generate and save global summary plots, local explanation plots, and dependence plots to gain insights into model behavior.
 
-## Setup
-
-To use the SHAP Explainer Docker Tool, you need to have Docker installed on your machine. Docker provides a platform to build, ship, and run applications in containers. Follow the official Docker documentation to install Docker for your operating system: [Docker Installation Guide](https://docs.docker.com/get-docker/)
-
 ## Usage
 
 1. Clone this repository to your local machine.
