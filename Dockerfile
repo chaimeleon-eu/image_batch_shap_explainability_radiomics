@@ -10,11 +10,11 @@ LABEL description="This image is still in development"
 USER root
 # Installation of tools and requirements:
 
-COPY ./requirements.txt .
+RUN mkdir /app
+COPY ./requirements.txt ./app/
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY ./ ./
+COPY ./app README.md LICENSE /app/
 
 # create the user (and group) "chaimeleon"
 RUN groupadd -g 1000 chaimeleon && \
@@ -30,7 +30,7 @@ RUN mkdir -p /home/chaimeleon/datasets && \
     mkdir -p /home/chaimeleon/persistent-home && \
     mkdir -p /home/chaimeleon/persistent-shared-folder
     
-ENTRYPOINT ["python","/workspace/main.py"]
+ENTRYPOINT ["python","/app/main.py"]
 
 WORKDIR /home/chaimeleon
 
@@ -40,7 +40,9 @@ WORKDIR /home/chaimeleon
 
 # WORKDIR /app
 
-# COPY requirements.txt /app/requirements.txt
+# COPY ./app /app
+
+# COPY ./requirements.txt .
 
 # RUN pip install -r requirements.txt
 
