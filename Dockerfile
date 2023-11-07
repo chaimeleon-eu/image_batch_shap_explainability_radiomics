@@ -2,7 +2,7 @@
 FROM python:3.9
 
 LABEL name="sharp-exp-tool"
-LABEL version="0.0.1 - testing"
+LABEL version="0.0.3 - testing"
 LABEL description="This image is still in development"
 
 
@@ -30,26 +30,24 @@ RUN mkdir -p /home/chaimeleon/datasets && \
     mkdir -p /home/chaimeleon/persistent-home && \
     mkdir -p /home/chaimeleon/persistent-shared-folder
     
+WORKDIR /home/chaimeleon
+
 ENTRYPOINT ["python","/app/main.py"]
 
-WORKDIR /home/chaimeleon
+
 
 
 # test it on local machine
 # FROM python:3.9
 
+# RUN mkdir /app
+
+# COPY ./requirements.txt ./app/
+# RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# COPY ./app README.md LICENSE /app/
+
 # WORKDIR /app
-
-# COPY ./app /app
-
-# COPY ./requirements.txt .
-
-# RUN pip install -r requirements.txt
-
-# COPY ./ ./
-# # COPY tab_shap.py /app/
-# # COPY main.py /app/
-
 # EXPOSE 8000
 
 # CMD ["python", "main.py"]

@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import configparser
 from tab_shap import SHAPAnalysis
+import argparse
 
 def read_config_file(file_path):
     """Parse a config file and return a configparser.ConfigParser object."""
@@ -29,11 +30,11 @@ def load_data(file_path):
 
     return data
 
-def main():
+def main(config_path):
     """Main function to load model, test data, compute and plot SHAP values."""
 
     # Read and parse the config file
-    config = read_config_file('config.ini')
+    config = read_config_file(config_path)
 
     # Extract values from the config file
     # The .get() method provides a way to specify a default value in case the key is not present
@@ -66,4 +67,7 @@ def main():
     shap_analysis_svm.shap_dependence_plot(top_n_dependence_plots, no_of_interactions=top_n_dependence_interactions)
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Process config file path.')
+    parser.add_argument('config_path', type=str, help='Path to the configuration file.')
+    args = parser.parse_args()
+    main(args.config_path)
